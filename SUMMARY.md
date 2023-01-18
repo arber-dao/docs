@@ -1,10 +1,15 @@
 # Table of contents
 
-* [Welcome To Arber Docs!](README.md)
+* [Welcome to the Arber Docs!](README.md)
 * [Quick Start](quick-start.md)
-
-## Reference
-
-* [API Reference](reference/api-reference/README.md)
-  * [Pets](reference/api-reference/pets.md)
-  * [Users](reference/api-reference/users.md)
+* [FAQ](faq.md)
+* [Governance](governance.md)
+* [Fundraiser](fundraiser/README.md)
+  * [Creating a Fundraiser](fundraiser/creating-a-fundraiser.md)
+  * [Milestones](fundraiser/milestones.md)
+  * [The MetaEvidence Document](fundraiser/the-metaevidence-document.md)
+  * [The Evidence Document and Claiming a Milestone](fundraiser/the-evidence-document-and-claiming-a-milestone.md)
+* [Donors](donors/README.md)
+  * [Donating to a Fundraiser](donors/donating-to-a-fundraiser.md)
+  * [Disputing a Fundraiser](donors/disputing-a-fundraiser.md)
+  * [Claiming Funds From the Arber Smart Contract](donors/claiming-funds-from-the-arber-smart-contract.md)
