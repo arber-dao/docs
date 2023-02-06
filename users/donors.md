@@ -8,3 +8,5 @@ description: COMING SOON!
 
 ## Disputing a Fundraisers Milestone
 
+## Submitting Appeals
+

@@ -14,4 +14,6 @@ description: COMING SOON!
 
 ## Claiming a Milestone
 
+## Submitting Appeals
+
 ##

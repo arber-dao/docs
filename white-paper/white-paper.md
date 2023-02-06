@@ -86,7 +86,7 @@ In order to create a dispute anyone can call the createDispute function and pass
 function rule(uint256 _disputeId, uint256 _ruling) external override(IArbitrable);
 ```
 
-Arber exposes a rule function. This is intended only for the arbitrator contract to call. When a dispute is finally ruled upon (and all appeals have been addressed), the arbitrator will call this function which will either be in favour of the creator, or the donors. The function will mark a milestone as completed and allow the creator to withdraw funds for that milestone, or will allow donors to withdraw their funds from the fundraiser depending on the ruling.
+Arber exposes a rule function. This is intended only for the arbitrator contract to call. When a dispute is finally ruled upon (and all appeals have been addressed), the arbitrator will call this function which will either be in favour of the creator, or the donors. The function will mark a milestone as completed and allow the creator to withdraw donations for that milestone, or will allow donors to withdraw their funds from the fundraiser depending on the ruling.
 
 
 
@@ -102,8 +102,9 @@ function withdraw(address tokenAddress) external;
 
 1. Implement MVP. This will include the full set of functions required for creating fundraisers, donating to fundraisers, creating disputes, and withdrawing funds as defined above. The governor will initially be set as a multi-sig wallet controlled by numerous interested parties in Arber to allow for rapid development of the protocol.
 2. Give creators the option to provide rewards for donating to their fundraiser. This could be exclusive NFT's or any desired ERC20 token.
-3. Integrate a fiat onramp. This is to open our audience to the regular person, allowing people who do not own crypto or know how to purchase crypto to become a user.
-4. Implement support for [Reality.eth](https://reality.eth.link/) to allow fundraiser creators to specify alternative arbitration mechanisms. Reality.eth will provide greater incentives for telling the truth, and greater cost for being dishonest. For fundraisers which have a higher level of ambiguity of what a completed mission statement looks like, Kleros is a better arbitration option. On the contrary, fundraisers which have a very clear completion criteria which can easily be proved upon milestone completion, would benefit from using Reality.eth.
-5. Give donors the ability to create fundraisers, which creators can stake on to take ownership of the fundraiser. This will give more power to donors to specify what sort of mission statement they want to be completed.
+3. Implement support for [Reality.eth](https://reality.eth.link/) to allow fundraiser creators to specify alternative arbitration mechanisms. Reality.eth will provide greater incentives for telling the truth, and greater cost for being dishonest. For fundraisers which have a higher level of ambiguity of what a completed mission statement looks like, Kleros is a better arbitration option. On the contrary, fundraisers which have a very clear completion criteria which can easily be proved upon milestone completion, would benefit from using Reality.eth.
+4. Give donors the ability to create fundraisers, which creators can stake on to take ownership of the fundraiser. This will give more power to donors to specify what sort of mission statement they want to be completed.
+5. Transition to a DAO governance solution. This will make the protocol much more decentralized, and allow anyone who holds the _ARBR_ token to stake it to generate passive income, as well as contribute to protocol improvements
+6. Integrate a fiat onramp. This is to open our audience to the regular person, allowing people who do not own crypto or know how to purchase crypto to become a user.
 
 ## Conclusion
