@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Welcome to the Arber Docs!](README.md)
+* [White Paper](white-paper.md)
 * [Quick Start](quick-start.md)
 * [FAQ](faq.md)
 * [Governance](governance.md)
@@ -12,4 +13,4 @@
 * [Donors](donors/README.md)
   * [Donating to a Fundraiser](donors/donating-to-a-fundraiser.md)
   * [Disputing a Fundraiser](donors/disputing-a-fundraiser.md)
-  * [Claiming Funds From the Arber Smart Contract](donors/claiming-funds-from-the-arber-smart-contract.md)
+* [Claiming Funds From the Arber Smart Contract](claiming-funds-from-the-arber-smart-contract.md)
