@@ -1,16 +1,23 @@
 # Table of contents
 
 * [Welcome to the Arber Docs!](README.md)
-* [White Paper](white-paper.md)
-* [Quick Start](quick-start.md)
-* [FAQ](faq.md)
-* [Governance](governance.md)
-* [Fundraiser](fundraiser/README.md)
-  * [Creating a Fundraiser](fundraiser/creating-a-fundraiser.md)
-  * [Milestones](fundraiser/milestones.md)
-  * [The MetaEvidence Document](fundraiser/the-metaevidence-document.md)
-  * [The Evidence Document and Claiming a Milestone](fundraiser/the-evidence-document-and-claiming-a-milestone.md)
-* [Donors](donors/README.md)
-  * [Donating to a Fundraiser](donors/donating-to-a-fundraiser.md)
-  * [Disputing a Fundraiser](donors/disputing-a-fundraiser.md)
-* [Claiming Funds From the Arber Smart Contract](claiming-funds-from-the-arber-smart-contract.md)
+
+## White Paper
+
+* [White Paper](white-paper/white-paper.md)
+
+## Users
+
+* [FAQ](users/faq.md)
+* [Governance](users/governance.md)
+* [Fundraisers](users/fundraisers.md)
+* [Donors](users/donors.md)
+* [Claiming Funds From the Arber Smart Contract](users/claiming-funds-from-the-arber-smart-contract.md)
+
+## Developers
+
+* [Client Side and Other Infrastructure](developers/client-side-and-other-infrastructure.md)
+
+***
+
+* [Using Contract Account as Fundraiser or Donor](using-contract-account-as-fundraiser-or-donor.md)

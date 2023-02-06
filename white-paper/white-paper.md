@@ -1,3 +1,7 @@
+---
+description: COMING SOON!
+---
+
 # White Paper
 
 ## Abstract
@@ -29,6 +33,8 @@ Arber is a decentralized autonomous organization (DAO) that helps facilitate don
 * **Dispute -** A dispute is created by the donors in the event they believe the creators evidence document does not satisfy the requirements as laid out by the meta evidence document. If the dispute succeeds in favour of the donors, all donors can withdraw their donation from that fundraiser. If the creator wins the dispute, the milestone is marked as completed, and they are able to withdraw proceeds for that milestone. By allowing to crowdfund dispute fees, as well as allowing to crowdfund the appeal for a disputes ruling, we reduce the possibility of collusion and the "rich" always winning disputes.
 * **Arbitrator -** The arbitrator is the smart contract which handles disputes. Currently Arber uses [Kleros](https://kleros.io/) for dispute resolution, but in the future could support alternative arbitrators. Kleros uses game theory to incentivize jurors that are ruling on a dispute to act honestly. By ensuring that there is an economic benefit to acting honestly, and a corresponding economic loss for acting dishonestly, donors and creators can trust that the ruling on a dispute will be the truth. Visit the [Kleros docs](https://kleros.gitbook.io/docs) for more information on how they facilitate decentralized dispute resolution.
 
+TODO: Keep writing stuff
+
 By holding Arber's _ARBR_ token, users can stake it to boost the visibility of a fundraiser. This reflects their level of trust and support for the goals and mission of the fundraiser. It also allows the staker to generate passive income when a milestone for that fundraiser is completed, which is calculated as a percentage of total amount staked, amount of time staked, and the amount claimed by the creator for that milestone. Additionally, _ARBR_ holders can vote on protocol improvements, and the rules for which fundraisers must abide by (ie. cannot create a fundraiser that is clearly inciting violence, where disputes for this are handled by [Kleros Curated Lists](https://curate.kleros.io/)).&#x20;
 
 ## Creating a Fundraiser
@@ -50,33 +56,41 @@ function approve(address _spender, uint256 _value) public;
 ```
 
 ```solidity
-function fundTransaction(uint32 _transactionId, uint256 _amountFunded) external;
+function donateFundraiser(uint32 _fundraiserId, uint256 _value) external;
 ```
 
 ## Claiming Donations from a Milestone
 
 ```solidity
 function requestClaimMilestone(
-  uint32 _transactionId, 
+  uint32 _fundraiserId, 
   string memory _evidenceUri
 ) external;
 ```
 
 ```solidity
-function claimMilestone(uint32 _transactionId) external;
+function claimMilestone(uint32 _fundraiserId) external;
 ```
 
 ## Disputing a Fundraiser Milestone
 
-TODO: Add methodology for appeals
+Currently, creators do not have to pay an arbitration fee when a dispute is created. The reason for this is that the creator is already potentially sacrificing a lot of donation funds in order to go through the dispute process. This is to prevent spamming a fundraiser with disputes. If creators had to pay arbitration fee every time some malicious actor attempted to raise a dispute, this could get cumbersome for the creator if they, for example missed the deadline to pay a dispute fee. In the event the donors win the dispute, but the creator wishes to request an appeal, both parties must fund the appeal fee.&#x20;
 
 ```solidity
-function createDispute(uint32 _transactionId) external payable;
+function createDispute(uint32 _fundraiserId) external payable;
 ```
+
+In order to create a dispute anyone can call the createDispute function and pass the fundraiser ID. They also must send ETH to pay for the dispute fee. It is important to note that they do not need to cover the entire dispute fee, as the dispute fee can be crowdfunded. Every time the function is called, the amount contributed to the dispute is tracked, and the function can be called until the entire dispute fee is covered.
 
 ```solidity
 function rule(uint256 _disputeId, uint256 _ruling) external override(IArbitrable);
 ```
+
+Arber exposes a rule function. This is intended only for the arbitrator contract to call. When a dispute is finally ruled upon (and all appeals have been addressed), the arbitrator will call this function which will either be in favour of the creator, or the donors. The function will mark a milestone as completed and allow the creator to withdraw funds for that milestone, or will allow donors to withdraw their funds from the fundraiser depending on the ruling.
+
+
+
+TODO: Add necessary API interface for creating appeals.
 
 ## Withdrawing Funds
 
@@ -91,6 +105,5 @@ function withdraw(address tokenAddress) external;
 3. Integrate a fiat onramp. This is to open our audience to the regular person, allowing people who do not own crypto or know how to purchase crypto to become a user.
 4. Implement support for [Reality.eth](https://reality.eth.link/) to allow fundraiser creators to specify alternative arbitration mechanisms. Reality.eth will provide greater incentives for telling the truth, and greater cost for being dishonest. For fundraisers which have a higher level of ambiguity of what a completed mission statement looks like, Kleros is a better arbitration option. On the contrary, fundraisers which have a very clear completion criteria which can easily be proved upon milestone completion, would benefit from using Reality.eth.
 5. Give donors the ability to create fundraisers, which creators can stake on to take ownership of the fundraiser. This will give more power to donors to specify what sort of mission statement they want to be completed.
-6. Transition to a DAO governance solution. This will make the protocol much more decentralized, and allow anyone who holds the _ARBR_ token to stake it to generate passive income, as well as contribute to protocol improvements. __&#x20;
 
 ## Conclusion
