@@ -33,7 +33,7 @@ Arber is a decentralized autonomous organization (DAO) that helps facilitate don
 * **Dispute -** A dispute is created by the donors in the event they believe the creators evidence document does not satisfy the requirements as laid out by the meta evidence document. If the dispute succeeds in favour of the donors, all donors can withdraw their donation from that fundraiser. If the creator wins the dispute, the milestone is marked as completed, and they are able to withdraw proceeds for that milestone. By allowing to crowdfund dispute fees, as well as allowing to crowdfund the appeal for a disputes ruling, we reduce the possibility of collusion and the "rich" always winning disputes.
 * **Arbitrator -** The arbitrator is the smart contract which handles disputes. Currently Arber uses [Kleros](https://kleros.io/) for dispute resolution, but in the future could support alternative arbitrators. Kleros uses game theory to incentivize jurors that are ruling on a dispute to act honestly. By ensuring that there is an economic benefit to acting honestly, and a corresponding economic loss for acting dishonestly, donors and creators can trust that the ruling on a dispute will be the truth. Visit the [Kleros docs](https://kleros.gitbook.io/docs) for more information on how they facilitate decentralized dispute resolution.
 
-TODO: Keep writing stuff
+TODO: Keep writing intro
 
 By holding Arber's _ARBR_ token, users can stake it to boost the visibility of a fundraiser. This reflects their level of trust and support for the goals and mission of the fundraiser. It also allows the staker to generate passive income when a milestone for that fundraiser is completed, which is calculated as a percentage of total amount staked, amount of time staked, and the amount claimed by the creator for that milestone. Additionally, _ARBR_ holders can vote on protocol improvements, and the rules for which fundraisers must abide by (ie. cannot create a fundraiser that is clearly inciting violence, where disputes for this are handled by [Kleros Curated Lists](https://curate.kleros.io/)).&#x20;
 
@@ -82,7 +82,7 @@ function claimMilestone(uint32 _fundraiserId) external;
 
 ## Disputing a Fundraiser Milestone
 
-Currently, creators do not have to pay an arbitration fee when a dispute is created. The reason for this is that the creator is already potentially sacrificing a lot of donation funds in order to go through the dispute process. This is to prevent spamming a fundraiser with disputes. If creators had to pay arbitration fee every time some malicious actor attempted to raise a dispute, this could get cumbersome for the creator if they, for example missed the deadline to pay a dispute fee. In the event the donors win the dispute, but the creator wishes to request an appeal, both parties must fund the appeal fee.&#x20;
+Currently, creators do not have to pay an arbitration fee when a dispute is created. The reason for this is that the creator is already potentially sacrificing a lot of donation funds in order to go through the dispute process. This is to prevent spamming a fundraiser with disputes. If creators had to pay arbitration fee every time some malicious actor attempted to raise a dispute, this could get cumbersome for the creator if they, for example missed the deadline to pay a dispute fee. In the event the donors win the dispute, but the creator wishes to request an appeal, both parties must fund the appeal fee.
 
 ```solidity
 function createDispute(uint32 _fundraiserId) external payable;
@@ -100,9 +100,13 @@ Arber exposes a rule function. This is intended only for the arbitrator contract
 
 TODO: Add necessary API interface for creating appeals.
 
+
+
+Arber maintainers will be consistently monitoring any disputes that occur. In order to reduce the possibility of parties missing the deadline to pay dispute or appeal fees, the maintainers will fund fees if they believe that the party has a winnable case. Although this is used as a safety precaution, it is not fool proof, and you should pay your own fees to ensure that your case makes it to arbitration. With this in mind, it is important to note, that the maintainers do NOT have the final say in which party wins the dispute, as the final say is left up to the arbitrator. Additionally, the maintainers do not have any extra functionality that others do not since anyone can pay dispute or appeal fees for either party.
+
 ## Withdrawing Funds
 
-This is the global withdraw function that allows EOA's and contract accounts to withdraw any funds that might be stored in the Arber core contract for that account. This includes claiming funds earned by creators for completing milestones, donors claiming funds from disputed fundraisers, any overpaid dispute fees, as well as reclaiming appeal fees when a dispute is won.
+This is the global withdraw function that allows EOA's and contract accounts to withdraw funds that are stored in the Arber core contract for that account. This includes claiming funds earned by creators for completing milestones, donors claiming funds from disputed fundraisers, any overpaid dispute fees, as well as reclaiming appeal fees when a dispute is won.
 
 ```solidity
 function withdraw(address tokenAddress) external;
