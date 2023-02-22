@@ -102,7 +102,9 @@ TODO: Add necessary API interface for creating appeals.
 
 
 
-Arber maintainers will be consistently monitoring any disputes that occur. In order to reduce the possibility of parties missing the deadline to pay dispute or appeal fees, the maintainers will fund fees if they believe that the party has a winnable case. Although this is used as a safety precaution, it is not fool proof, and you should pay your own fees to ensure that your case makes it to arbitration. With this in mind, it is important to note, that the maintainers do NOT have the final say in which party wins the dispute, as the final say is left up to the arbitrator. Additionally, the maintainers do not have any extra functionality that others do not since anyone can pay dispute or appeal fees for either party.
+The Arber team will diligently monitor any disputes that arise. In order to minimize the risk of missed deadlines for dispute or appeal fees, the team will cover such fees if they believe that the party in question has a strong case. It should be noted, however, that this should be viewed as a precautionary measure rather than a failsafe, and all parties are advised to pay their own fees to ensure their case makes it to arbitration.&#x20;
+
+It is important to emphasize that the Arber team is not vested with ultimate authority to determine the outcome of disputes, rather the arbitrator retains this responsibility. Additionally, the team does not have any additional capabilities beyond those available to others, as anyone is permitted to pay dispute or appeal fees for either party.
 
 ## Withdrawing Funds
 
