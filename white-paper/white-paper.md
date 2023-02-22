@@ -51,13 +51,21 @@ function createFundraiser(
 
 ## Donating to a Fundraiser
 
+Donating to a fundraiser is quite straight forward, and consistent with how you would allow any contract to take ownership of funds.
+
 ```solidity
 function approve(address _spender, uint256 _value) public;
 ```
 
+The approve function must be called on the ERC20 token that is being donated. The spender is the Arber core smart contract, with the value being the amount you wish to donate.
+
 ```solidity
 function donateFundraiser(uint32 _fundraiserId, uint256 _value) external;
 ```
+
+Once the Arber core contract has been approved to spend your ERC20, you can call the donateFundraiser function, by passing the ID of the fundraiser you wish to donate to, as well as the value you wish to donate (the same value that was approved).
+
+In order to donate ETH, a WETH contract must be used since the protocol currently only supports donating ERC20 compatible tokens.&#x20;
 
 ## Claiming Donations from a Milestone
 
@@ -94,9 +102,13 @@ TODO: Add necessary API interface for creating appeals.
 
 ## Withdrawing Funds
 
+This is the global withdraw function that allows EOA's and contract accounts to withdraw any funds that might be stored in the Arber core contract for that account. This includes claiming funds earned by creators for completing milestones, donors claiming funds from disputed fundraisers, any overpaid dispute fees, as well as reclaiming appeal fees when a dispute is won.
+
 ```solidity
 function withdraw(address tokenAddress) external;
 ```
+
+In order to claim funds, the token address that you are claiming for must be passed to the withdraw function. Since dispute and appeal fees must be paid in ETH, in order to claim ETH, the 0 address is passed to the withdraw function. Note that if a fundraiser is using a WETH contract to raise funds, in order to claim those funds, it is the address of the WETH contract that is passed to the withdraw function. Then the WETH tokens can appropriately be traded for ETH.&#x20;
 
 ## Roadmap
 
