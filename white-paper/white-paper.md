@@ -39,6 +39,8 @@ By holding Arber's _ARBR_ token, users can stake it to boost the visibility of a
 
 ## Creating a Fundraiser
 
+TODO: create detailed outline of creating a fundraiser. This is left for now as the function is subject to change (still unsure if \_creatorWithdrawTimeout should be decided by the creator or not as well as some other uncertainties about some parameters). Additionally should include very detailed outline of how MetaEvidence document is created as well as an example MetaEvidence document.
+
 ```solidity
 function createFundraiser(
   uint64[] memory _milestoneAmountUnlockablePercentage,
@@ -57,17 +59,19 @@ Donating to a fundraiser is quite straight forward, and consistent with how you 
 function approve(address _spender, uint256 _value) public;
 ```
 
-The approve function must be called on the ERC20 token that is being donated. The spender is the Arber core smart contract, with the value being the amount you wish to donate.
+The _approve_ function must be called on the ERC20 token that is being donated. The spender is the Arber core smart contract, with the value being the amount you wish to donate.
 
 ```solidity
 function donateFundraiser(uint32 _fundraiserId, uint256 _value) external;
 ```
 
-Once the Arber core contract has been approved to spend your ERC20, you can call the donateFundraiser function, by passing the ID of the fundraiser you wish to donate to, as well as the value you wish to donate (the same value that was approved).
+Once the Arber core contract has been approved to spend your ERC20, you can call the _donateFundraiser_ function, by passing the ID of the fundraiser you wish to donate to, as well as the value you wish to donate (the same value that was approved).
 
 In order to donate ETH, a WETH contract must be used since the protocol currently only supports donating ERC20 compatible tokens.&#x20;
 
 ## Claiming Donations from a Milestone
+
+When the creator believes they have completed the necessary requirements for their milestone, as laid out by the MetaEvidence document they can call the _requestClaimMilestone_ function.&#x20;
 
 ```solidity
 function requestClaimMilestone(
@@ -76,9 +80,21 @@ function requestClaimMilestone(
 ) external;
 ```
 
+The _requestClaimMilestone_ function is only callable by the creator of the fundraiser, and the ID of the fundraiser, as well as the URI for the evidence document must be passed to the function. Since milestones must be completed in sequential order, there is no need to pass the ID of the milestone to this function.
+
+
+
+TODO: add necessary info for evidence document. This should include a detailed outline of how an evidence document is created, and an example of an evidence document
+
+
+
+Once _requestClaimMilestone_ is called, the _claimMilestone_ function can be called after _creatorWithdrawTimeout_ time has exceeded (see [Creating a Fundraiser](white-paper.md#creating-a-fundraiser)). This timeout is to allow sufficient time for the donors to raise a dispute. If a dispute is raised, the _claimMilestone_ function is blocked until the dispute has been addressed.
+
 ```solidity
 function claimMilestone(uint32 _fundraiserId) external;
 ```
+
+If no dispute is raised, and the timeout has exceeded, anyone can call _claimMilestone_ and the appropriate amount of funds will be awarded to the creator which can immediately be withdrawn (see [Withdrawing Funds](white-paper.md#withdrawing-funds)).
 
 ## Disputing a Fundraiser Milestone
 
@@ -88,13 +104,13 @@ Currently, creators do not have to pay an arbitration fee when a dispute is crea
 function createDispute(uint32 _fundraiserId) external payable;
 ```
 
-In order to create a dispute anyone can call the createDispute function and pass the fundraiser ID. They also must send ETH to pay for the dispute fee. It is important to note that they do not need to cover the entire dispute fee, as the dispute fee can be crowdfunded. Every time the function is called, the amount contributed to the dispute is tracked, and the function can be called until the entire dispute fee is covered.
+In order to create a dispute anyone can call the _createDispute_ function and pass the fundraiser ID. They also must send ETH to pay for the dispute fee. It is important to note that they do not need to cover the entire dispute fee, as the dispute fee can be crowdfunded. Every time the function is called, the amount contributed to the dispute is tracked, and the function can be called until the entire dispute fee is covered.
 
 ```solidity
 function rule(uint256 _disputeId, uint256 _ruling) external override(IArbitrable);
 ```
 
-Arber exposes a rule function. This is intended only for the arbitrator contract to call. When a dispute is finally ruled upon (and all appeals have been addressed), the arbitrator will call this function which will either be in favour of the creator, or the donors. The function will mark a milestone as completed and allow the creator to withdraw donations for that milestone, or will allow donors to withdraw their funds from the fundraiser depending on the ruling.
+Arber exposes a _rule_ function. This is intended only for the arbitrator contract to call. When a dispute is finally ruled upon (and all appeals have been addressed), the arbitrator will call this function which will either be in favour of the creator, or the donors. The function will mark a milestone as completed and allow the creator to withdraw donations for that milestone, or will allow donors to withdraw their funds from the fundraiser depending on the ruling.
 
 
 
@@ -108,13 +124,13 @@ It is important to emphasize that the Arber team is not vested with ultimate aut
 
 ## Withdrawing Funds
 
-This is the global withdraw function that allows EOA's and contract accounts to withdraw funds that are stored in the Arber core contract for that account. This includes claiming funds earned by creators for completing milestones, donors claiming funds from disputed fundraisers, any overpaid dispute fees, as well as reclaiming appeal fees when a dispute is won.
+This is the global _withdraw_ function that allows EOA's and contract accounts to withdraw funds that are stored in the Arber core contract for that account. This includes claiming funds earned by creators for completing milestones, donors claiming funds from disputed fundraisers, any overpaid dispute fees, as well as reclaiming appeal fees when a dispute is won.
 
 ```solidity
 function withdraw(address tokenAddress) external;
 ```
 
-In order to claim funds, the token address that you are claiming for must be passed to the withdraw function. Since dispute and appeal fees must be paid in ETH, in order to claim ETH, the 0 address is passed to the withdraw function. Note that if a fundraiser is using a WETH contract to raise funds, in order to claim those funds, it is the address of the WETH contract that is passed to the withdraw function. Then the WETH tokens can appropriately be traded for ETH.&#x20;
+In order to claim funds, the token address that you are claiming for must be passed to the _withdraw_ function. Since dispute and appeal fees must be paid in ETH, in order to claim ETH, the 0 address is passed to the withdraw function. Note that if a fundraiser is using a WETH contract to raise funds, in order to claim those funds, it is the address of the WETH contract that is passed to the withdraw function. Then the WETH tokens can appropriately be traded for ETH.&#x20;
 
 ## Roadmap
 
