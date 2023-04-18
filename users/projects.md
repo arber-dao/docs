@@ -2,9 +2,9 @@
 description: COMING SOON!
 ---
 
-# Fundraisers
+# Projects
 
-## Creating a Fundraiser
+## Creating a Project
 
 ### MetaEvidence Document
 

@@ -10,7 +10,7 @@
 
 * [FAQ](users/faq.md)
 * [Governance](users/governance.md)
-* [Fundraisers](users/fundraisers.md)
+* [Projects](users/projects.md)
 * [Donors](users/donors.md)
 * [Claiming Funds From the Arber Smart Contract](users/claiming-funds-from-the-arber-smart-contract.md)
 
@@ -20,4 +20,4 @@
 
 ***
 
-* [Using Contract Account as Fundraiser or Donor](using-contract-account-as-fundraiser-or-donor.md)
+* [Using Contract Account as Project Creator or Donor](using-contract-account-as-project-creator-or-donor.md)
